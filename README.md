@@ -16,3 +16,4 @@ Here are the things I will refactor:
 * distanceFeed method is rather long and you need to create a service class to handle those things. If this was a Laravel project, you can use depedency injection in the method.
 * Also you can use the message property in the response to give out messages.
 * Spacing on variable declarations and method calls is crucial.
+* Using declaration conditionals is bad too cause it will cause confusion
