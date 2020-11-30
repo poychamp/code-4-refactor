@@ -89,6 +89,7 @@ class BookingController extends Controller
     {
         $data = $request->all();
         $cuser = $request->__authenticatedUser;
+        // this is bad the response is handled inside the booking repository
         $response = $this->repository->updateJob($id, array_except($data, ['_token', 'submit']), $cuser);
 
         return response($response);
@@ -102,7 +103,7 @@ class BookingController extends Controller
     {
         $adminSenderEmail = config('app.adminemail');
         $data = $request->all();
-
+        // this is bad the response is handled inside the booking repository
         $response = $this->repository->storeJobEmail($data);
 
         return response($response);
@@ -115,7 +116,6 @@ class BookingController extends Controller
     public function getHistory(Request $request)
     {
         if($user_id = $request->get('user_id')) {
-
             $response = $this->repository->getUsersJobsHistory($user_id, $request);
             return response($response);
         }

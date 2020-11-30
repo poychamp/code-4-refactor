@@ -17,3 +17,4 @@ Here are the things I will refactor:
 * Also you can use the message property in the response to give out messages.
 * Spacing on variable declarations and method calls is crucial.
 * Using declaration conditionals is bad too cause it will cause confusion
+* Alot of responses are handled in the repository. A repository should only handle one model.
