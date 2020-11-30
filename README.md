@@ -13,7 +13,6 @@ Here are the things I will refactor:
 * Also response variables need to be clear. Like, what are we getting here for the response? Is it a job or is it users?
 * You can use ternary conditions to shorten 2 if statements.
 * So far, you use JSON respone. It's better to follow a specific structure for JSON responses these days. The best I can think of is to put the response in data.
-* distanceFeed method is rather long and you need to create a service class to handle those things. If this was a Laravel project, you can use depedency injection in the method.
 * Also you can use the message property in the response to give out messages.
 * Spacing on variable declarations and method calls is crucial.
 * Using declaration conditionals is bad too cause it will cause confusion
