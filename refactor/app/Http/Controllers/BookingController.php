@@ -73,6 +73,7 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // this is bad the response is handled inside the booking repository
         $response = $this->repository->store($request->__authenticatedUser, $data);
 
         return response($response);
