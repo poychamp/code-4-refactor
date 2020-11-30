@@ -1,9 +1,9 @@
 Code is decent. It uses dependency injection.
 
-First of all, this is the wrong implementation of the Repository Pattern. What you need to do here first is to create an interface and use inversion of control to use that repository. So for example, you have a BaseRepositoryInterface and a BookingRepositoryInterface. The purpose of the Repository pattern is so that you can interchange the type of database access. For example, you have a MySQL repository, MongoDB Repostiory, EloquentRepository, etc... Anyway, it is best to create a Service class here instead. I won't refactor this but in the controller it should be BookRepostioryInterface and the isntance will be an instance of EloquentBookRepository.
+First of all, this is the wrong implementation of the Repository Pattern. What you need to do here first is to create an interface and use inversion of control to use that repository. So for example, you have a BaseRepositoryInterface and a BookingRepositoryInterface. The purpose of the Repository pattern is so that you can interchange the type of database access. For example, you have a MySQL repository, MongoDB Repostiory, EloquentRepository, etc... Anyway, it is best to create a Service class here instead. I won't refactor this but in the controller it should be BookRepostioryInterface and will be an instance of EloquentBookRepository.
 
-spacing is not my cup of tea but i will not refactor it because it's the code standards of the team.
-the request->__authenticatedUser is bad. unfortunately, i cannot refactor it but mostly properties with _ means it's a private property. It's better to use a getter like $request->getUser()
+* spacing is not my cup of tea but i will not refactor it because it's the code standards of the team.
+* the request->__authenticatedUser is bad. unfortunately, i cannot refactor it but mostly properties with _ means it's a private property. It's better to use a getter like $request->getUser()
 
 I won't refactor Booking Repository anymore cause it's horrible. A lot of nested conditions. Spacing problems. Unclear variables. You get what I mean. One more thing. Don't use Mailer inside the repository. The repository's job is only to handle database calls.
 
