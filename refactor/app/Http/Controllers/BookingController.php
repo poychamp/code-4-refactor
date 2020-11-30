@@ -134,20 +134,22 @@ class BookingController extends Controller
     {
         $data = $request->all();
         $user = $request->__authenticatedUser;
-
         $response = $this->repository->acceptJob($data, $user);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     public function acceptJobWithId(Request $request)
     {
         $data = $request->get('job_id');
         $user = $request->__authenticatedUser;
-
         $response = $this->repository->acceptJobWithId($data, $user);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     /**
@@ -158,10 +160,11 @@ class BookingController extends Controller
     {
         $data = $request->all();
         $user = $request->__authenticatedUser;
-
         $response = $this->repository->cancelJobAjax($data, $user);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     /**
@@ -171,20 +174,22 @@ class BookingController extends Controller
     public function endJob(Request $request)
     {
         $data = $request->all();
-
         $response = $this->repository->endJob($data);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
 
     }
 
     public function customerNotCall(Request $request)
     {
         $data = $request->all();
-
         $response = $this->repository->customerNotCall($data);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
 
     }
 
@@ -196,10 +201,11 @@ class BookingController extends Controller
     {
         $data = $request->all();
         $user = $request->__authenticatedUser;
-
         $response = $this->repository->getPotentialJobs($user);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     public function distanceFeed(Request $request)
