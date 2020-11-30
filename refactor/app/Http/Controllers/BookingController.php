@@ -298,9 +298,10 @@ class BookingController extends Controller
 
         try {
             $this->repository->sendSMSNotificationToTranslator($job);
+
             return response(['success' => 'SMS sent']);
         } catch (\Exception $e) {
-            return response(['success' => $e->getMessage()]);
+            return response(['fail' => $e->getMessage()]);
         }
     }
 
