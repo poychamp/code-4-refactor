@@ -39,16 +39,12 @@ class BookingController extends Controller
 
         if ($user_id) {
             return response([
-                'data' => [
-                    'users_jobs' => $this->repository->getUsersJobs($user_id)
-                ]
+                'data' => $this->repository->getUsersJobs($user_id)
             ]);
         } else if ($request->__authenticatedUser->user_type == config('admin.admin_role_id') ||
             $request->__authenticatedUser->user_type == config('admin.superadmin_role_id')) {
             return response([
-                'data' => [
-                    'jobs' => $response = $this->repository->getAll($request)
-                ]
+                'data' => $response = $this->repository->getAll($request)
             ]);
         }
     }
@@ -60,9 +56,7 @@ class BookingController extends Controller
     public function show($id)
     {
         return response([
-            'data' => [
-                'job' => $this->repository->with('translatorJobRel.user')->find($id)
-            ]
+            'data' => $this->repository->with('translatorJobRel.user')->find($id)
         ]);
     }
 
@@ -76,7 +70,9 @@ class BookingController extends Controller
         // this is bad the response is handled inside the booking repository
         $response = $this->repository->store($request->__authenticatedUser, $data);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
 
     }
 
@@ -92,7 +88,9 @@ class BookingController extends Controller
         // this is bad the response is handled inside the booking repository
         $response = $this->repository->updateJob($id, array_except($data, ['_token', 'submit']), $cuser);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     /**
@@ -106,7 +104,9 @@ class BookingController extends Controller
         // this is bad the response is handled inside the booking repository
         $response = $this->repository->storeJobEmail($data);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     /**
@@ -115,12 +115,15 @@ class BookingController extends Controller
      */
     public function getHistory(Request $request)
     {
-        if($user_id = $request->get('user_id')) {
-            $response = $this->repository->getUsersJobsHistory($user_id, $request);
-            return response($response);
+        $user_id = $request->get('user_id');
+
+        if (! $user_id) {
+            return response('Unauthorized', 401);
         }
 
-        return null;
+        return response([
+            'data' => $this->repository->getUsersJobsHistory($user_id, $request)
+        ]);
     }
 
     /**
