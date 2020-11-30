@@ -267,7 +267,9 @@ class BookingController extends Controller
         $data = $request->all();
         $response = $this->repository->reopen($data);
 
-        return response($response);
+        return response([
+            'data' => $response
+        ]);
     }
 
     public function resendNotifications(Request $request)
@@ -275,9 +277,12 @@ class BookingController extends Controller
         $data = $request->all();
         $job = $this->repository->find($data['jobid']);
         $job_data = $this->repository->jobToData($job);
+
         $this->repository->sendNotificationTranslator($job, $job_data, '*');
 
-        return response(['success' => 'Push sent']);
+        return response(
+            ['success' => 'Push sent']
+        );
     }
 
     /**
