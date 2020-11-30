@@ -59,9 +59,11 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $job = $this->repository->with('translatorJobRel.user')->find($id);
-
-        return response($job);
+        return response([
+            'data' => [
+                'job' => $this->repository->with('translatorJobRel.user')->find($id)
+            ]
+        ]);
     }
 
     /**
@@ -71,7 +73,6 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         $response = $this->repository->store($request->__authenticatedUser, $data);
 
         return response($response);
