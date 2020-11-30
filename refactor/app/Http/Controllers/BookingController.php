@@ -253,7 +253,7 @@ class BookingController extends Controller
             ], 422);
         }
 
-        $job = Distance::where('job_id', '=', $job_id);
+        $job = Distance::where('job_id', '=', $job_id)->first();
 
         $job->update($colsUpdate);
 
